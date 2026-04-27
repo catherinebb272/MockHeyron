@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Heyron Mission Control</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #07090c;
+  --card: #0F141C;
+  --border: #1a2230;
+  --text: #e6edf3;
+  --muted: #8b949e;
+
+  --cyan: #22D3EE;
+  --mint: #34D399;
+  --amber: #F59E0B;
+  --violet: #A78BFA;
+  --crimson: #DC2626;
+}
+
+
+
+/* BASE */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+}
+
+/* WRAPPER */
+.app-shell {
+  position: relative;   /* creates a stacking context */
+  z-index: 1;           /* ensures content sits above bg-image */
+  width: 100%;
+  max-width: 1100px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+/* BACKGROUND IMAGE */
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+/* HEADER */
+.header {
+  padding: 16px 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+/* HEADER TITLE STACK */
+.header-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.header-title h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.slogan {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* RIGHT SIDE: CHAT + ACCOUNT */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-link {
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.header-icon {
+  font-size: 18px;
+  text-decoration: none;
+}
+
+
+/* GRID */
+.grid {
+  display: grid;
+  gap: 12px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .grid-4 {
+    grid-template-columns: repeat(4, minmax(70px, 1fr));
+  }
+
+  .card {
+    padding: 8px; /* smaller cards on mobile */
+  }
+
+  .stat-title {
+    font-size: 10px;
+  }
+
+  .stat-value {
+    font-size: 14px;
+  }
+
+  .graph {
+    height: 20px;
+  }
+}
+
+
+.grid-6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}  /* ← your main block ends here */
+
+/* ↓ mobile breakpoints go right here, after the closing brace */
+
+@media (max-width: 600px) {
+  .grid-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* CARDS */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+/* TEXT */
+.stat-title {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.stat-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  margin-top: 4px;
+}
+
+/* GRAPH */
+.graph {
+  height: 28px;
+  margin-top: 6px;
+}
+
+.graph path {
+  stroke-width: 2;
+  fill: none;
+  stroke: var(--cyan);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw 5s ease-in-out infinite alternate;
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* STATUS — FIXED, NON-STACKING, BACKGROUND-IMAGE VERSION */
+.status {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  align-items: center;
+  flex-wrap: nowrap; /* never stack */
+}
+
+.status-left {
+  flex: 0 0 220px; /* readable minimum */
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12px;
+  height: auto;
+}
+
+.status-right {
+  flex: 1;
+  border-radius: 12px;
+  background-image: url("assets/status-visual.png");
+  background-size: cover;       /* fills the box */
+  background-position: center;  /* centered nicely */
+  background-repeat: no-repeat;
+  min-height: 80px;             /* keeps it slim */
+  padding: 0;                   /* no extra space */
+}
+
+/* MOBILE — STILL SIDE-BY-SIDE */
+@media (max-width: 600px) {
+  .status {
+    flex-wrap: nowrap; /* force side-by-side even on mobile */
+  }
+
+  .status-left {
+    flex: 0 0 160px; /* slightly smaller but still readable */
+    min-width: 150px;
+  }
+
+  .status-right {
+    min-height: 60px; /* slimmer on mobile */
+    background-size: contain; /* prevents zooming */
+  }
+}
+
+/* ICONS */
+.icon {
+  width: clamp(28px, 5vw, 36px);
+  height: clamp(28px, 5vw, 36px);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 6px;
+
+  /* subtle polish */
+  image-rendering: -webkit-optimize-contrast;
+  filter: drop-shadow(0 0 6px rgba(34,211,238,0.25));
+}
+.quick-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  min-height: 180px;
+  padding-bottom: 12px;
+}
+
+.quick-card h3 {
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+.quick-card p {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 10px;
+  flex-grow: 1;
+}
+
+.quick-card .button {
+  margin-top: auto;
+}
+
+
+/* BUTTON */
+.button {
+  margin-top: 6px;
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  font-size: 10px;
+  text-decoration: none;
+}
+
+.tip-dynamic,
+.tip-static {
+  background: #111827;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.2; /* removes double spacing */
+}
+
+.tip-dynamic p,
+.tip-static p {
+  margin: 4px 0; /* removes huge paragraph spacing */
+}
+
+
+/* FOOTER */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #0a0f14;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+/* MOBILE FIXES */
+@media (max-width: 600px) {
+  body {
+    overflow-y: auto;
+    padding-bottom: 80px;
+  }
+
+  .container {
+    padding-bottom: 80px;
+  }
+
+  .status-right {
+    background-image: none;
+    min-height: 0;
+  }
+
+  /* 3-COLUMN MOBILE GRID */
+  .grid-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* COMPACT MOBILE CARDS */
+  .quick-card {
+    min-height: 120px;
+    padding: 6px;
+  }
+
+  .quick-card h3 {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+
+  .quick-card p {
+    flex-grow: 0;
+    font-size: 10px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .quick-card .button {
+    margin-top: 4px;
+    transform: scale(0.9);
+  }
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<img src="assets/space-bg.png" class="bg-image" />
+
+<div class="app-shell">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <img src="assets/logo.png" class="logo">
+
+    <div class="header-title">
+      <h1>Heyron</h1>
+      <div class="slogan">Mission Control</div>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <a href="#" class="header-link">Chat</a>
+    <a href="#" class="header-icon">👤</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="grid grid-4">
+
+  <div class="card">
+    <div class="stat-title">Active Agents</div>
+    <div class="stat-value">2540</div>
+    <svg class="graph" viewBox="0 0 100 30">
+      <path d="M0 20 L20 18 L40 22 L60 15 L80 17 L100 10"/>
+    </svg>
+  </div>
+
+  <div class="card">
+    <div class="stat-title">Days Since Launch</div>
+    <div class="stat-value">56</div>
+    <svg class="graph" viewBox="0 0 100 30">
+      <path d="M0 25 L20 20 L40 18 L60 16 L80 12 L100 8"/>
+    </svg>
+  </div>
+
+  <div class="card">
+    <div class="stat-title">Tokens Processed</div>
+    <div class="stat-value">109B</div>
+    <svg class="graph" viewBox="0 0 100 30">
+      <path d="M0 22 L20 23 L40 19 L60 14 L80 10 L100 6"/>
+    </svg>
+  </div>
+
+  <div class="card">
+    <div class="stat-title">Countries</div>
+    <div class="stat-value">47+</div>
+    <svg class="graph" viewBox="0 0 100 30">
+      <path d="M0 24 L20 21 L40 19 L60 17 L80 14 L100 12"/>
+    </svg>
+  </div>
+
+</div>
+
+<!-- STATUS -->
+<div class="status">
+  <div class="card status-left">
+    <div class="stat-title">System Status</div>
+    <div style="color:#34D399;">[Server Status]</div>
+  </div>
+
+<div class="card status-right"></div>
+
+</div>
+
+<!-- QUICK CARDS -->
+<div class="grid grid-6" style="margin-top:16px;">
+
+  <div class="card quick-card">
+    <img src="assets/rocket.svg" class="icon">
+    <h3>Initial Setup</h3>
+    <p>Configure your account, develop an agent personality</p>
+    <a href="https://heyron.ai/" class="button">Get Started</a>
+  </div>
+
+  <div class="card quick-card">
+    <img src="assets/compass.svg" class="icon">
+    <h3>Quickstart Guide</h3>
+    <p>Get up and running fast with quick tutorials</p>
+    <a href="https://heyron.ai/" class="button">Open Guide</a>
+  </div>
+
+  <div class="card quick-card">
+    <img src="assets/headset.svg" class="icon">
+    <h3>Support</h3>
+    <p>How to submit tickets, get community help</p>
+    <a href="https://heyron.ai/" class="button">Go to Support</a>
+  </div>
+
+  <div class="card quick-card">
+    <img src="assets/monitor.svg" class="icon">
+    <h3>Tutorials</h3>
+    <p>Over 100 short modules to help you build a powerful agent</p>
+    <a href="https://heyron.ai/" class="button">Browse</a>
+  </div>
+
+  <div class="card quick-card">
+    <img src="assets/bulb.svg" class="icon">
+    <h3>Ideas</h3>
+    <p>Prompts, projects and helpful tips</p>
+    <a href="https://heyron.ai/" class="button">Explore</a>
+  </div>
+
+  <div class="card quick-card">
+    <img src="assets/people.svg" class="icon">
+    <h3>About</h3>
+    <p>Learn about our mission, team and roadmap</p>
+    <a href="https://heyron.ai/" class="button">Learn More</a>
+  </div>
+
+</div>
+
+<!-- TIP -->
+<div class="card" style="margin-top:14px;">
+  <div class="stat-title">Tip of the Day</div>
+
+  <div class="tip-dynamic">
+    [Dynamic Tip from Server]
+  </div>
+
+  <div class="tip-static">
+    Let your agent walk you through difficult projects. Just say:<br><br>
+    <strong>"Ronny, walk me through setting up a Telegram connection for you."</strong><br><br>
+    If you run into obstacles, ask for solutions.
+  </div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <a href="https://heyron.ai/">💬</a>
+  <a href="https://heyron.ai/">🎧</a>
+  <a href="https://heyron.ai/">💬</a>
+</div>
+
+</body>
+</html>
