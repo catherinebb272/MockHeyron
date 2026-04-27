@@ -351,6 +351,28 @@ body {
     min-height: 0;
   }
 
+  /* HEADER MOBILE FIXES */
+  .header {
+    padding: 16px 12px;     /* adds breathing room */
+    flex-wrap: nowrap;      /* prevents wrapping */
+    min-width: 0;           /* allows shrinking */
+  }
+
+  .header-right {
+    padding-right: 8px;     /* prevents clipping */
+    gap: 12px;              /* tighter spacing */
+  }
+
+  .header-link {
+    font-size: 13px;
+  }
+
+  .header-icon {
+    font-size: 18px;
+  }
+}
+
+
   /* 3-COLUMN MOBILE GRID */
   .grid-6 {
     grid-template-columns: repeat(3, 1fr);
@@ -403,10 +425,11 @@ body {
     </div>
   </div>
 
-  <div class="header-right">
-    <a href="#" class="header-link">Chat</a>
-    <a href="https://heyron.ai/chat" class="header-icon">👤</a>
-  </div>
+<div class="header-right">
+  <a href="https://heyron.ai/chat" class="header-link">Chat</a>
+  <a href="https://heyron.ai/chat" class="header-icon">👤</a>
+</div>
+
 </div>
 
 <!-- STATS -->
@@ -470,7 +493,7 @@ body {
   <div class="card quick-card">
     <img src="assets/compass.svg" class="icon">
     <h3>Quickstart Guide</h3>
-    <p>Get up and running fast with quick tutorials</p>
+    <p>Get going fast with quick tutorials</p>
     <a href="https://heyron.ai/" class="button">Open Guide</a>
   </div>
 
@@ -484,7 +507,7 @@ body {
   <div class="card quick-card">
     <img src="assets/monitor.svg" class="icon">
     <h3>Tutorials</h3>
-    <p>Over 100 short modules to help you build a powerful agent</p>
+    <p>100+ short modules to help you build</p>
     <a href="https://heyron.ai/" class="button">Browse</a>
   </div>
 
