@@ -325,15 +325,23 @@ body {
 
 
 /* FOOTER */
-.footer {
+.footer-nav {
   position: fixed;
   bottom: 0;
   width: 100%;
   background: #0a0f14;
+  border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-around;
   padding: 10px 0;
 }
+
+.footer-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 12px;
+}
+
 
 /* MOBILE FIXES */
 @media (max-width: 600px) {
@@ -543,13 +551,12 @@ body {
 </div>
 
 </div>
-
-<!-- FOOTER -->
-<div class="footer">
-  <a href="https://heyron.ai/">💬</a>
-  <a href="https://heyron.ai/">🎧</a>
-  <a href="https://heyron.ai/">💬</a>
+<div class="footer-nav">
+  <a href="https://heyron.ai/chat">💬 Chat</a>
+  <a href="https://heyron.ai/support">🎧 Support</a>
+  <a href="https://discord.com">🧠 Discord</a>
 </div>
+
 
 </body>
 </html>
