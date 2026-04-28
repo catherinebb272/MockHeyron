@@ -35,12 +35,21 @@
       margin-left: 16px;
     }
 
-    .content-table {
-      width: 100%;
-      height: calc(100vh - 100px);
-      table-layout: fixed;
-      border-collapse: collapse;
-    }
+    /* CONSTRAIN THE TABLE */
+.content-table {
+  width: 100%;
+  height: 33.33vh;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.content-table tr {
+  height: 100%;
+}
+
+.content-table td {
+  height: 100%;
+}
 
     .content-table td {
       vertical-align: top;
