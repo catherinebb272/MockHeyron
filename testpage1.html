@@ -54,6 +54,36 @@
     .content-table td {
       vertical-align: top;
     }
+
+    .button-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+/*--FANCY LAUNCHPAD BUTTON--*/
+.launch-btn {
+  background: #22d3ee;
+  color: #07090c;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* hover = subtle glow + lift */
+.launch-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.6);
+}
+
+/* click feel */
+.launch-btn:active {
+  transform: translateY(0px);
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.4);
+}
 .text-cell {
   width: 33.33%;
   padding: 40px;
@@ -135,9 +165,12 @@
 
       <td class="text-cell">
         <h2>Welcome to HeyRon</h2>
-        <p>HeyRon is your AI-powered digital assistant designed to help you navigate the modern web with ease.</p>
-        <p>Built on cutting-edge AI technology, I adapt to your workflow and learn from your preferences.</p>
-        <p>Ready to see what I can do? Let's explore together.</p>
+        <p>Mission Control is your signed in home. Your work is connected, Launchpad progress is tracked.  Next step: <b>personality!</b></p>
+          <p>Ready to see what I can do? Let's explore together.</p>
+    <div class="button-wrap">
+    <button class="launch-btn">Continue Launchpad</button>
+  </div>
+      
       </td>
 
       <td class="image-cell">
