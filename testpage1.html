@@ -90,27 +90,29 @@
       filter: blur(.5px) brightness(0.90);
       opacity: 0.95;
     }
+/*--RACCOON FLOATING ANIMATION --*/
+.raccoon {
+  position: absolute;
+  left: 20%;
+  top: 30%;
+  width: 140px;
+  animation: floatWander 12s ease-in-out infinite;
+}
 
-    .raccoon {
-      position: absolute;
-      left: 20%;
-      top: 30%;
-      width: 140px;
-      animation: floatRaccoon 5s ease-in-out infinite;
-    }
+@keyframes floatWander {
+  0%   { transform: translate(0px, 0px) rotate(-2deg); }
+  20%  { transform: translate(15px, -20px) rotate(2deg); }
+  40%  { transform: translate(-10px, -35px) rotate(-1deg); }
+  60%  { transform: translate(20px, -15px) rotate(3deg); }
+  80%  { transform: translate(-15px, -25px) rotate(-2deg); }
+  100% { transform: translate(0px, 0px) rotate(-2deg); }
+}
 
 .space-scene {
   height: 100%;
   max-height: 33.33vh;
 }
-    
-    /* FLOATING ANIMATION */
-    @keyframes floatRaccoon {
-      0%   { transform: translate(0px, 0px); }
-      50%  { transform: translate(10px, -20px); }
-      100% { transform: translate(0px, 0px); }
-    }
-
+ 
   </style>
 </head>
 
