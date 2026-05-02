@@ -57,10 +57,11 @@
       align-items: center;
       gap: 10px;
     }
-
-    .logo-icon {
-      width: 36px;
-      height: 36px;
+.logo-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;}
+  
       background: var(--accent);
       border-radius: 8px;
       display: flex;
@@ -390,10 +391,9 @@
 <!-- HEADER -->
 <header class="header">
   <div class="logo">
-    <div class="logo-icon">
-      <img src="assets/logo.png" alt="heyron logo"></div>
-    <span>Heyron</span>
-  </div>
+  <img src="assets/logo.png" alt="Heyron" class="logo-img">
+  <span>Heyron</span>
+</div>
   <nav class="nav-links">
     <a href="#">Home</a>
     <a href="#">Launchpad</a>
