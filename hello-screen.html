@@ -57,18 +57,11 @@
       align-items: center;
       gap: 10px;
     }
-.logo-img {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;}
-  
-      background: var(--accent);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      color: var(--bg-page);
+
+    .logo-img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
     }
 
     .logo span {
@@ -102,7 +95,7 @@
     .space-scene {
       position: relative;
       width: 100%;
-      height: 220px;
+      height: 180px;
       margin-bottom: 24px;
       overflow: hidden;
       border-radius: var(--r-xl);
@@ -189,36 +182,37 @@
       margin-bottom: 28px;
     }
 
-    .headline {
-      font-size: 32px;
+    .hero-title {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+      color: var(--text-primary);
+    }
+
+    .hero-tagline {
+      font-size: 14px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-actions {
+      font-size: 22px;
       font-weight: 500;
-      letter-spacing: -0.024em;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .sub {
-      font-size: 16px;
+      letter-spacing: 0.3em;
       color: var(--text-secondary);
-      line-height: 1.6;
+      margin-bottom: 16px;
     }
 
-    /* HELLO BODY */
-    .hello-body {
+    .hero-body {
       font-size: 14px;
       color: var(--text-secondary);
       line-height: 1.6;
       margin: 0 auto 20px;
       max-width: 500px;
       text-align: center;
-    }
-
-    .hello-body strong {
-      color: var(--accent);
-      font-weight: 600;
     }
 
     /* CARD GRID */
@@ -363,11 +357,11 @@
       }
       
       .space-scene {
-        height: 240px;
+        height: 160px;
       }
       
       .space-raccoon {
-        width: 150px;
+        width: 120px;
         left: 8%;
       }
       
@@ -376,8 +370,13 @@
         right: 8%;
       }
       
-      .headline {
-        font-size: 26px;
+      .hero-title {
+        font-size: 28px;
+      }
+      
+      .hero-actions {
+        font-size: 16px;
+        letter-spacing: 0.15em;
       }
       
       .panel {
@@ -391,9 +390,9 @@
 <!-- HEADER -->
 <header class="header">
   <div class="logo">
-  <img src="assets/logo.png" alt="Heyron" class="logo-img">
-  <span>Heyron</span>
-</div>
+    <img src="assets/logo.png" alt="Heyron" class="logo-img">
+    <span>Heyron</span>
+  </div>
   <nav class="nav-links">
     <a href="#">Home</a>
     <a href="#">Launchpad</a>
@@ -406,15 +405,17 @@
   
   <!-- SPACE SCENE (Hero) -->
   <div class="space-scene">
-    <img src="assets/bg-space.png" alt="Space background" class="space-bg">
-    <img src="assets/raccoonspace.png" alt="Floating Ron" class="space-raccoon">
-    <img src="assets/ship.png" alt="Spaceship" class="space-ship">
+    <img src="/assets/bg-space.png" alt="Space background" class="space-bg">
+    <img src="/assets/raccoonspace.png" alt="Floating Ron" class="space-raccoon">
+    <img src="/assets/ship.png" alt="Spaceship" class="space-ship">
   </div>
 
   <!-- CHOOSE PATH PANEL -->
   <div class="panel">
     <div class="hero">
-      <h2 class="headline">Let's make your agent yours.</h2>
+      <h1 class="hero-title">Agent Launchpad</h1>
+      <p class="hero-tagline">Build &middot; Personalize &middot; Launch</p>
+      <p class="hero-body">Design your agent's personality, behavior and abilities and make your agent yours. Choose your level and begin!</p>
     </div>
     
     <div class="card-grid">
