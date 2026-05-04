@@ -45,7 +45,7 @@ html, body { background: var(--bg-page); }
 .option.selected { border-color: var(--accent); background: rgba(34,211,238,0.04); }
 .option.selected .option-mark { border-color: var(--accent); }
 .option.selected .option-mark::after { background: var(--accent); }
-.chip.selected { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.chip.selected { border-color: var(--accent); color: #FFFFFF; background: rgba(34,211,238,0.08); box-shadow: 0 0 0 1px var(--accent); }
 .voice.selected { border-color: var(--accent); background: rgba(34,211,238,0.04); }
 .step.active { background: var(--accent); }
 .step.done { background: var(--accent); opacity: 0.4; }
@@ -160,7 +160,7 @@ select.input { appearance: none; -webkit-appearance: none; background-image: lin
 .persona-sample { font-size: 12px; color: var(--text-primary); background: var(--bg-panel-2); padding: 10px 12px; border-radius: var(--r-sm); margin-bottom: 10px; line-height: 1.55; font-style: italic; border-left: 2px solid var(--brand-secondary); }
 .persona-best { font-size: 11px; color: var(--text-tertiary); }
 .persona-best strong { color: var(--text-secondary); font-weight: 500; }
-.comm-sample { font-size: 13px; color: var(--text-primary); background: var(--bg-panel-2); padding: 10px 12px; border-radius: var(--r-sm); margin-top: 10px; line-height: 1.55; font-style: italic; border-left: 2px solid var(--brand-secondary); }
+.comm-sample { font-size: 13px; color: var(--text-primary); background: var(--bg-panel-2); padding: 10px 12px; border-radius: var(--r-sm); margin-top: 10px; line-height: 1.55; font-style: italic; border-left: 2px solid var(--accent); }
 
 .usecase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .usecase { display: flex; align-items: center; gap: 10px; background: var(--bg-panel); border: 0.5px solid var(--border-muted); border-radius: var(--r-md); padding: 12px; cursor: pointer; color: inherit; text-align: left; transition: border-color 140ms; width: 100%; }
@@ -274,7 +274,7 @@ select.input { appearance: none; -webkit-appearance: none; background-image: lin
 .day-row { display: flex; gap: 6px; margin-top: 8px; }
 .day { flex: 1; padding: 10px 4px; font-size: 12px; background: var(--bg-panel); border: 0.5px solid var(--border-muted); border-radius: var(--r-sm); cursor: pointer; text-align: center; color: var(--text-secondary); transition: all 140ms; }
 .day:hover { border-color: var(--border-strong); }
-.day.selected { border-color: var(--brand-secondary); color: var(--brand-secondary); background: var(--accent-soft); }
+.day.selected { border-color: var(--accent); color: #FFFFFF; background: rgba(34,211,238,0.08); box-shadow: 0 0 0 1px var(--accent); }
 
 .summary { display: flex; flex-direction: column; gap: 0; background: var(--bg-panel); border: 0.5px solid var(--border-muted); border-radius: var(--r-lg); }
 .summary-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 16px; border-bottom: 0.5px solid var(--border-muted); font-size: 13px; gap: 12px; }
@@ -595,12 +595,11 @@ function PersonalityScreen({ data, onUpdate, onNext, onBack, step, totalSteps })
 
       <p style={{ marginBottom: 16 }}></p>
 
-      <p className="persona-section-label">First, meet the family</p>
-      <p className="persona-section-sub">Here's what a few Heyron agents already out in the world sound like. These aren't options, they're examples so you have a feel for the range before you pick.</p>
+      <p className="persona-section-label" style={{ color: 'var(--accent)' }}>First, meet the family</p>
+      <p className="persona-section-sub" style={{ fontSize: 12 }}>Here's what a few Heyron agents already out in the world sound like. These aren't options, they're examples so you have a feel for the range before you pick.</p>
       <div className="persona-showcase">{HEYRON_PERSONAS.map((p) => (<div key={p.id} className="persona-example"><p className="persona-name">{p.name}</p><p className="persona-tag">{p.tag}</p><p className="persona-sample">{p.sample}</p></div>))}</div>
 
-      <p className="persona-section-label" style={{ marginTop: 22 }}>Now pick a style of voice for your agent. Any one of these works. Go with your gut to start.</p>
-      <p className="persona-section-sub">Any one of these works. Go with gut.</p>
+      <p className="persona-section-label" style={{ marginTop: 22, fontSize: 12, color: 'var(--accent)' }}>Now pick a style of voice for your agent.</p>
       <div className="options options-rich">{PERSONAS.map((p) => (<button key={p.id} className={`option persona-card ${data.personality === p.id ? 'selected' : ''}`} onClick={() => onUpdate({ personality: p.id })}><p className="persona-name">{p.name}</p><p className="persona-tag">{p.tag}</p><p className="persona-sample">{p.sample}</p><p className="persona-best"><strong>Best for:</strong> {p.best}</p></button>))}</div>
       <div className="actions"><button className="btn btn-ghost btn-back" onClick={onBack}>Back</button><button className="btn btn-primary" onClick={onNext} disabled={!data.personality}>Continue</button></div>
     </div>
@@ -672,7 +671,7 @@ function IntegrationsPickScreen({ data, onUpdate, onNext, onBack, step, totalSte
   const cta = toSetup.length === 0 ? 'Skip integrations' : `Walk through ${toSetup.length} tool${toSetup.length === 1 ? '' : 's'}`;
   return (
     <div className="panel"><Brand /><Steps current={step} total={totalSteps} />
-      <div className="hero-with-mascot"><img src="assets/raccoon7.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline" style={{ fontSize: '24px' }}>What functions should agent handle?</h1><p className="sub">Pick the apps you actually use. We'll set each one up together. Your keys, your data, your access. You can skip anything now and add it later.</p></div></div>
+      <div className="hero-with-mascot"><img src="raccoon7.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline" style={{ fontSize: '24px' }}>What functions should agent handle?</h1><p className="sub">Pick the apps you actually use. We'll set each one up together. Your keys, your data, your access. You can skip anything now and add it later.</p></div></div>
       <div className="integrations">{INTEGRATIONS_LIST.map((i) => { const picked = toSetup.includes(i.id); return (
         <button key={i.id} className={`integration ${picked ? 'connected' : ''}`} onClick={() => toggle(i.id)}>
           <div className="integration-icon">{i.icon}</div>
@@ -693,9 +692,12 @@ function IntegrationsPickScreen({ data, onUpdate, onNext, onBack, step, totalSte
 
 /* ─── Per-tool setup wrapper ────────────────────────────────────── */
 function IntegrationStep({ name, desc, step, totalSteps, onSkip, onConnect, onBack, connected, canConnect, children }) {
+  const toolNames = ['github','telegram','apify','elevenlabs','obsidian','cron','browser','composio','byok'];
+  const toolIndex = toolNames.indexOf(name.toLowerCase().replace(/\s+/g, '').replace('your own key (byok)', 'byok').replace('web browser', 'browser'));
+  const raccoonNum = toolIndex >= 0 ? toolIndex + 7 : 7;
   return (
     <div className="panel"><Brand /><Steps current={step} total={totalSteps} />
-      <div className="hero-with-mascot"><img src="assets/raccoon7.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline" style={{ fontSize: '24px' }}>{name === 'Cron' ? 'Create a repeating cron task?' : `Would you like to add ${name}?`}</h1><p className="sub">{desc}</p></div></div>
+      <div className="hero-with-mascot"><img src={`assets/raccoon${raccoonNum}.png`} alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline" style={{ fontSize: '24px' }}>{name === 'Cron' ? 'Create a repeating cron task?' : `Would you like to add ${name}?`}</h1><p className="sub">{desc}</p></div></div>
       {children}
       <div className="actions">
         <button className="btn btn-ghost btn-back" onClick={onBack} style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}>Back</button>
@@ -1011,7 +1013,7 @@ function NotificationsScreen({ data, onUpdate, onNext, onBack, step, totalSteps 
 function PrivacyScreen({ data, onUpdate, onNext, onBack, step, totalSteps }) {
   return (
     <div className="panel"><Brand /><Steps current={step} total={totalSteps} />
-      <div className="hero-with-mascot"><img src="assets/raccoon11.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline">A few privacy choices.</h1><p className="sub">Change anytime.</p></div></div>
+      <img src="assets/raccoon11.png"<p className="sub">Change anytime.</p></div></div>
       <div><div className="toggle-row"><div className="toggle-info"><p className="toggle-title">Learn from my interactions</p><p className="toggle-desc">Improve at the things you do most.</p></div><button className={`toggle ${data.learnFromMe ? 'on' : ''}`} onClick={() => onUpdate({ learnFromMe: !data.learnFromMe })} aria-label="toggle"/></div><div className="toggle-row"><div className="toggle-info"><p className="toggle-title">Share anonymous usage data</p><p className="toggle-desc">Helps improve Heyron. No content.</p></div><button className={`toggle ${data.shareUsage ? 'on' : ''}`} onClick={() => onUpdate({ shareUsage: !data.shareUsage })} aria-label="toggle"/></div></div>
       <div className="field" style={{ marginTop: 20 }}><label>Auto-delete chat history</label><select className="input" value={data.autoDelete} onChange={(e) => onUpdate({ autoDelete: e.target.value })}><option>Never</option><option>After 30 days</option><option>After 90 days</option><option>After 1 year</option></select></div>
       <div className="actions"><button className="btn btn-ghost btn-back" onClick={onBack}>Back</button><button className="btn btn-primary" onClick={onNext}>Continue</button></div>
@@ -1023,7 +1025,7 @@ function AboutYouScreen({ data, onUpdate, onNext, onBack, step, totalSteps }) {
   const [text, setText] = useState(data.aboutYou || '');
   return (
     <div className="panel"><Brand /><Steps current={step} total={totalSteps} />
-      <div className="hero-with-mascot"><img src="assets/raccoon12.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline" style={{ fontSize: '24px' }}>Describe Yourself</h1><p className="sub">Your assistant starts with your backstory. Explain who you are, what you're building, and how you want to be spoken to.</p></div></div>
+      <img src="assets/raccoon12.png"<p className="sub">Your assistant starts with your backstory. Explain who you are, what you're building, and how you want to be spoken to.</p></div></div>
       <p className="about-prompt">The more honest the better. This is what makes a generic assistant into <strong>yours</strong>. Think: what you do for work, what you're building, who's in your life, how you like to be talked to, what you're bad at remembering, what you wish a friend would chase you about. It grows from here, everything your agent learns about you builds on this foundation.</p>
       <textarea className="input about-textarea" value={text} onChange={(e) => { setText(e.target.value); onUpdate({ aboutYou: e.target.value }); }} rows={10} placeholder="I'm Cassie. I run product at Heyron. I have a dog named Coop. I'm bad at eating during work hours and great at forgetting to reply to my mom. I learn best by doing, not by reading docs. I care about craft, kindness, and not wasting people's time. I want you to flag when I haven't replied to someone in more than 2 days, help me draft messages when I'm stuck, and remind me to drink water…" />
       <p className="about-note">Editable anytime from <strong>Settings → About you</strong>.</p>
@@ -1037,7 +1039,7 @@ function DisclaimerScreen({ data, onAccept, onBack, step, totalSteps }) {
   const [agreed, setAgreed] = useState(false);
   return (
     <div className="panel"><Brand /><Steps current={step} total={totalSteps} />
-      <div className="hero-with-mascot"><img src="assets/raccoon11.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline">A serious talk before {data.agentName || 'your agent'} goes live.</h1><p className="sub">A few honest things. Your agent is powerful, and we want you to use it well.</p></div></div>
+      <img src="assets/raccoon11.png" {data.agentName || 'your agent'} goes live.</h1><p className="sub">A few honest things. Your agent is powerful, and we want you to use it well.</p></div></div>
       <div className="disclaimer-list">
         <div className="disclaimer-item">
           <p className="disclaimer-title">AI makes mistakes.</p>
@@ -1066,7 +1068,7 @@ function DisclaimerScreen({ data, onAccept, onBack, step, totalSteps }) {
 function FinishScreen({ data, onEnter, onBack, step, totalSteps, onResumeLaunchpad }) {
   return (
     <div className="panel"><Brand /><Steps current={step} total={totalSteps} />
-      <div className="hero-with-mascot"><img src="assets/raccoon12.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline">You did it.</h1><p className="sub">{data.agentName || 'Your agent'} is yours now. Set up around you, ready to learn.</p></div></div>
+      <img src="assets/raccoon12.png"<p className="sub">{data.agentName || 'Your agent'} is yours now. Set up around you, ready to learn.</p></div></div>
       <div className="finish-note">
         <p>This is day one. Every conversation, every task, every correction, {data.agentName || 'your agent'} remembers and grows from it. The more you work with it, the more it becomes yours.</p>
         <p>Change its name, voice, tools, or anything else anytime by coming back to Launchpad.</p>
@@ -1432,7 +1434,7 @@ function App() {
       {screen === 'beginner-preview' && <PreviewScreen data={data} onLaunch={() => advance('beginner-preview')} onBack={() => back('beginner-preview')} step={stepB('beginner-preview')} totalSteps={totalB} expert={false} />}
       {screen === 'beginner-about' && <AboutYouScreen data={data} onUpdate={update} onNext={() => advance('beginner-about')} onBack={() => back('beginner-about')} step={stepB('beginner-about')} totalSteps={totalB} />}
       {screen === 'beginner-disclaimer' && <DisclaimerScreen data={data} onAccept={() => { if (window.HeyronLaunchpad?.saveAboutYou) window.HeyronLaunchpad.saveAboutYou(data.aboutYou || '', { yourName: data.yourName, agentName: data.agentName }); advance('beginner-disclaimer'); }} onBack={() => back('beginner-disclaimer')} step={stepB('beginner-disclaimer')} totalSteps={totalB} />}
-      {screen === 'beginner-finish' && <FinishScreen data={data} onEnter={() => { if (window.HeyronLaunchpad?.save) window.HeyronLaunchpad.save(data); setScreen('dashboard'); }} onBack={() => back('beginner-finish')} onResumeLaunchpad={() => setScreen('beginner-pick-tools')} step={stepB('beginner-finish')} totalSteps={totalB} />}
+      {screen === 'beginner-finish' && <FinishScreen data={data} onEnter={() => { if (window.HeyronLaunchpad?.save) window.HeyronLaunchpad.save(data); setScreen('dashboard'); }} onBack={() => back('beginner-finish')} onResumeLaunchpad={() => setScreen('beginner-names')} step={stepB('beginner-finish')} totalSteps={totalB} />}
       {screen === 'expert-names' && <NamesScreen data={data} onUpdate={update} onBack={() => back('expert-names')} onNext={() => advance('expert-names')} step={stepE('expert-names')} totalSteps={totalE} />}
       {screen === 'expert-usecases' && <UseCasesScreen data={data} onUpdate={update} onBack={() => back('expert-usecases')} onNext={() => advance('expert-usecases')} step={stepE('expert-usecases')} totalSteps={totalE} />}
       {screen === 'expert-model' && <ModelScreen data={data} onUpdate={update} onBack={() => back('expert-model')} onNext={() => advance('expert-model')} step={stepE('expert-model')} totalSteps={totalE} />}
@@ -1447,7 +1449,7 @@ function App() {
       {screen === 'expert-preview' && <PreviewScreen data={data} onLaunch={() => advance('expert-preview')} onBack={() => back('expert-preview')} step={stepE('expert-preview')} totalSteps={totalE} expert={true} />}
       {screen === 'expert-about' && <AboutYouScreen data={data} onUpdate={update} onNext={() => advance('expert-about')} onBack={() => back('expert-about')} step={stepE('expert-about')} totalSteps={totalE} />}
       {screen === 'expert-disclaimer' && <DisclaimerScreen data={data} onAccept={() => { if (window.HeyronLaunchpad?.saveAboutYou) window.HeyronLaunchpad.saveAboutYou(data.aboutYou || '', { yourName: data.yourName, agentName: data.agentName }); advance('expert-disclaimer'); }} onBack={() => back('expert-disclaimer')} step={stepE('expert-disclaimer')} totalSteps={totalE} />}
-      {screen === 'expert-finish' && <FinishScreen data={data} onEnter={() => { if (window.HeyronLaunchpad?.save) window.HeyronLaunchpad.save(data); setScreen('dashboard'); }} onBack={() => back('expert-finish')} onResumeLaunchpad={() => setScreen('expert-pick-tools')} step={stepE('expert-finish')} totalSteps={totalE} />}
+      {screen === 'expert-finish' && <FinishScreen data={data} onEnter={() => { if (window.HeyronLaunchpad?.save) window.HeyronLaunchpad.save(data); setScreen('dashboard'); }} onBack={() => back('expert-finish')} onResumeLaunchpad={() => setScreen('expert-names')} step={stepE('expert-finish')} totalSteps={totalE} />}
       {screen === 'dashboard' && <Dashboard data={data} onReset={reset} onHelp={() => setScreen('help')} onNavigateHelp={(slug) => setScreen(`help-${slug}`)} onBackToLaunchpad={() => setScreen('beginner-pick-tools')} />}
       {screen === 'help' && <HelpIndex onSelect={(s) => setScreen(`help-${s}`)} onBack={() => setScreen('dashboard')} />}
       {screen.startsWith('help-') && <HelpPage slug={screen.replace('help-', '')} onSelect={(s) => setScreen(`help-${s}`)} onBack={() => setScreen('help')} />}
