@@ -427,14 +427,7 @@ html, body { background: var(--bg-page); }
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel" data-presets="env,react">
 const { useState, useEffect, useRef } = React;
-/* Ron companion on light panels - keep it cyan */
-.panel .ron-companion {
-  color: #22D3EE !important;
-  text-shadow: 0 0 10px rgba(34,211,238,0.5) !important;
-}
-.panel .ron-companion span {
-  color: #546E8F !important;
-}
+
 /* ─── Mascot ─────────────────────────────────────────────────────── */
 function Eye({ cx, cy, pupilCx, pupilCy }) {
   return (<g><circle cx={cx} cy={cy} r="4.8" fill="#F5F5F5" /><circle cx={pupilCx} cy={pupilCy} r="2.3" fill="#18181B" /><circle cx={pupilCx - 1} cy={pupilCy - 1} r="1.1" fill="#F5F5F5" /></g>);
@@ -598,7 +591,7 @@ function PersonalityScreen({ data, onUpdate, onNext, onBack, step, totalSteps })
   return (
     <div className="panel"><Brand /><Steps current={step} total={totalSteps} />
       <div className="hero-with-mascot"><img src="raccoon4.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline">Pick {data.agentName || 'your agent'}'s Communication Style</h1><p className="sub">This is the style and tone of voice your agent will use every day. From this starting point, it'll grow into its own as it learns from you.</p></div></div>
-      <p className="persona-intro">You're picking a <strong>starting style and voice</strong>, not a final one. As your agent gets to know you, it picks up your phrasing, your inside jokes, your rhythm. In a few weeks it sounds like your agent, not an archetype. You can change this anytime in settings.</p>
+      <p className="persona-intro" style={{ fontSize: 12 }}>You're picking a <strong>starting style and voice</strong>, not a final one. As your agent gets to know you, it picks up your phrasing, your inside jokes, your rhythm. In a few weeks it sounds like your agent, not an archetype. You can change this anytime in settings.</p>
 
       <p style={{ marginBottom: 16 }}></p>
 
@@ -1030,7 +1023,7 @@ function AboutYouScreen({ data, onUpdate, onNext, onBack, step, totalSteps }) {
   const [text, setText] = useState(data.aboutYou || '');
   return (
     <div className="panel"><Brand /><Steps current={step} total={totalSteps} />
-      <div className="hero-with-mascot"><img src="raccoon12.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline" style={{ fontSize: '24px' }}>Describe Yourself</h1><p className="sub">Your assistant starts with your backstory. Explain who you are, what you're building, what matters to you, and how you want to be spoken to.</p></div></div>
+      <div className="hero-with-mascot"><img src="raccoon12.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline" style={{ fontSize: '24px' }}>Describe Yourself</h1><p className="sub">Your assistant starts with your backstory. Explain who you are, what you're building, and how you want to be spoken to.</p></div></div>
       <p className="about-prompt">The more honest the better. This is what makes a generic assistant into <strong>yours</strong>. Think: what you do for work, what you're building, who's in your life, how you like to be talked to, what you're bad at remembering, what you wish a friend would chase you about. It grows from here, everything your agent learns about you builds on this foundation.</p>
       <textarea className="input about-textarea" value={text} onChange={(e) => { setText(e.target.value); onUpdate({ aboutYou: e.target.value }); }} rows={10} placeholder="I'm Cassie. I run product at Heyron. I have a dog named Coop. I'm bad at eating during work hours and great at forgetting to reply to my mom. I learn best by doing, not by reading docs. I care about craft, kindness, and not wasting people's time. I want you to flag when I haven't replied to someone in more than 2 days, help me draft messages when I'm stuck, and remind me to drink water…" />
       <p className="about-note">Editable anytime from <strong>Settings → About you</strong>.</p>
@@ -1044,7 +1037,7 @@ function DisclaimerScreen({ data, onAccept, onBack, step, totalSteps }) {
   const [agreed, setAgreed] = useState(false);
   return (
     <div className="panel"><Brand /><Steps current={step} total={totalSteps} />
-      <div className="hero"><Mascot pose="thinking" size={90} /><div className="hero-text"><h1 className="headline">One real talk before {data.agentName || 'your agent'} goes live.</h1><p className="sub">A few honest things. Your agent is powerful, and we want you to use it well.</p></div></div>
+      <div className="hero-with-mascot"><img src="raccoon11.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline">A serious talk before {data.agentName || 'your agent'} goes live.</h1><p className="sub">A few honest things. Your agent is powerful, and we want you to use it well.</p></div></div>
       <div className="disclaimer-list">
         <div className="disclaimer-item">
           <p className="disclaimer-title">AI makes mistakes.</p>
@@ -1073,7 +1066,7 @@ function DisclaimerScreen({ data, onAccept, onBack, step, totalSteps }) {
 function FinishScreen({ data, onEnter, onBack, step, totalSteps, onResumeLaunchpad }) {
   return (
     <div className="panel"><Brand /><Steps current={step} total={totalSteps} />
-      <div className="hero finish-hero"><Mascot pose="greeting" size={120} /><div className="hero-text"><h1 className="headline">You did it.</h1><p className="sub">{data.agentName || 'Your agent'} is yours now. Set up around you, ready to learn.</p></div></div>
+      <div className="hero-with-mascot"><img src="raccoon12.png" alt="Raccoon" className="mascot-image" /><div className="hero-text"><h1 className="headline">You did it.</h1><p className="sub">{data.agentName || 'Your agent'} is yours now. Set up around you, ready to learn.</p></div></div>
       <div className="finish-note">
         <p>This is day one. Every conversation, every task, every correction, {data.agentName || 'your agent'} remembers and grows from it. The more you work with it, the more it becomes yours.</p>
         <p>Change its name, voice, tools, or anything else anytime by coming back to Launchpad.</p>
